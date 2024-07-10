@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using OOP2Assignment2.Services;
 
 namespace OOP2Assignment2
 {
@@ -20,6 +21,8 @@ namespace OOP2Assignment2
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddSingleton<FlightHandler>();
 
             return builder.Build();
         }

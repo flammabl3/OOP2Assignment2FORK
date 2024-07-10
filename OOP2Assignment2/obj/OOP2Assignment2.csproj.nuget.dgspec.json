@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj": {}
+    "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj": {
+    "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
+        "projectUniqueName": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
         "projectName": "OOP2Assignment2",
-        "projectPath": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
+        "projectPath": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
         "packagesPath": "C:\\Users\\Harry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2\\obj\\",
+        "outputPath": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
@@ -66,9 +66,17 @@
         "net8.0-android34.0": {
           "targetAlias": "net8.0-android",
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.0.1, )"
+            },
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Hosting": {
+              "target": "Package",
+              "version": "[2.2.7, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -113,9 +121,17 @@
         "net8.0-ios17.2": {
           "targetAlias": "net8.0-ios",
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.0.1, )"
+            },
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Hosting": {
+              "target": "Package",
+              "version": "[2.2.7, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -160,9 +176,17 @@
         "net8.0-maccatalyst17.2": {
           "targetAlias": "net8.0-maccatalyst",
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.0.1, )"
+            },
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Hosting": {
+              "target": "Package",
+              "version": "[2.2.7, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -208,9 +232,17 @@
         "net8.0-windows10.0.19041": {
           "targetAlias": "net8.0-windows10.0.19041.0",
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.0.1, )"
+            },
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Hosting": {
+              "target": "Package",
+              "version": "[2.2.7, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",

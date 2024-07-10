@@ -1,0 +1,34 @@
+﻿@page "/flights"
+@using OOP2Assignment2.Services
+@inject FlightHandler flightHandler
+
+<h1>Flights</h1>
+
+@if (flights == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <select @bind="selectedFlightNumber">
+        @foreach (var flight in flights)
+        {
+            <option value="@flight.FlightNumber">@flight.FlightNumber - @flight.Airline</option>
+        }
+    </select>
+}
+
+@code {
+    private List<Flight> flights;
+    private string selectedFlightNumber;
+
+    protected override void OnInitialized()
+    {
+        flights = flightHandler.ReadCSV();
+    }
+
+    public void FindFlight()
+    {
+        // Implement flight finding logic here
+    }
+}
