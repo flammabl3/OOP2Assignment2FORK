@@ -550,6 +550,9 @@
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\Components\Layout\NavMenu.razor.css">
       <PackagePath>Components\Layout\NavMenu.razor.css</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\Components\Pages\Flights.razor.css">
+      <PackagePath>Components\Pages\Flights.razor.css</PackagePath>
+    </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
     <ResolvedSDKReference Include="C:\Users\Harry\.nuget\packages\microsoft.windowsappsdk\1.3.230724000\buildTransitive\..\tools\MSIX\win10-x86\Microsoft.WindowsAppRuntime.1.3.msix">

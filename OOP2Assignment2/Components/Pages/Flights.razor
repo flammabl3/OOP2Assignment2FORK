@@ -1,34 +1,63 @@
 ﻿@page "/flights"
 @using OOP2Assignment2.Services
+@using Microsoft.Maui.Controls
 @inject FlightHandler flightHandler
 
-<h1>Flights</h1>
 
-@if (flights == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <select @bind="selectedFlightNumber">
+<div class="header">
+    <h1>Flight Finder</h1>
+</div>
+
+
+
+<div id ="flightSelect">
+    <label>
+        From
+        <input @bind-value='outgoing' />
+    </label>
+
+    <label>
+        To
+        <input @bind-value='incoming' />
+    </label>
+
+    <label>
+        Day
+        <input @bind-value='day' />
+    </label>
+
+    <Button @onclick="FindFlights">Find Flights</Button>
+
+</div>
+
+<div class="header">
+    <h1>Flights</h1>
+</div>
+
+<div>
+    <select> 
         @foreach (var flight in flights)
         {
-            <option value="@flight.FlightNumber">@flight.FlightNumber - @flight.Airline</option>
+            <option value="@flight.FlightNumber">@flight.FlightNumber, @flight.Airline, @flight.AirportCodeStart, @flight.AirportCodeEnd, @flight.Day, @flight.Time, @flight.Unsure </option>
         }
     </select>
-}
+</div>
+
 
 @code {
-    private List<Flight> flights;
-    private string selectedFlightNumber;
+    private List<Flight> flights = new List<Flight>();
+    private string incoming = "Any";
+    private string outgoing = "Any";
+    private string day = "Any";
 
     protected override void OnInitialized()
     {
-        flights = flightHandler.ReadCSV();
+        flightHandler.ReadCSV();
     }
 
-    public void FindFlight()
+    void FindFlights()
     {
-        // Implement flight finding logic here
+        flights = flightHandler.findFlights(outgoing, incoming, day);
     }
+
 }

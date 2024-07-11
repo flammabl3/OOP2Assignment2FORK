@@ -15,12 +15,24 @@
       "RelativeMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|solutionrelative:oop2assignment2\\services\\flighthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|c:\\users\\harry\\onedrive - southern alberta institute of technology\\oop2\\oop2assignment2\\oop2assignment2\\components\\pages\\flights.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|solutionrelative:oop2assignment2\\components\\pages\\flights.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|c:\\users\\harry\\onedrive - southern alberta institute of technology\\oop2\\oop2assignment2\\oop2assignment2\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|solutionrelative:oop2assignment2\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|c:\\users\\harry\\onedrive - southern alberta institute of technology\\oop2\\oop2assignment2\\oop2assignment2\\oop2assignment2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|solutionrelative:oop2assignment2\\oop2assignment2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|c:\\users\\harry\\onedrive - southern alberta institute of technology\\oop2\\oop2assignment2\\oop2assignment2\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|solutionrelative:oop2assignment2\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|c:\\users\\harry\\onedrive - southern alberta institute of technology\\oop2\\oop2assignment2\\oop2assignment2\\bin\\debug\\net8.0-windows10.0.19041.0\\win10-x64\\appx\\wwwroot\\oop2assignment2.styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|solutionrelative:oop2assignment2\\bin\\debug\\net8.0-windows10.0.19041.0\\win10-x64\\appx\\wwwroot\\oop2assignment2.styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|c:\\users\\harry\\onedrive - southern alberta institute of technology\\oop2\\oop2assignment2\\oop2assignment2\\obj\\debug\\net8.0-android\\lp\\154\\jl\\res\\values\\styles.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|solutionrelative:oop2assignment2\\obj\\debug\\net8.0-android\\lp\\154\\jl\\res\\values\\styles.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{33EFFF34-7629-4AAF-A6A6-72FF252B4B69}|OOP2Assignment2\\OOP2Assignment2.csproj|c:\\users\\harry\\onedrive - southern alberta institute of technology\\oop2\\oop2assignment2\\oop2assignment2\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,24 +46,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "OOP2Assignment2",
-              "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
-              "RelativeDocumentMoniker": "OOP2Assignment2\\OOP2Assignment2.csproj",
-              "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
-              "RelativeToolTip": "OOP2Assignment2\\OOP2Assignment2.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEIAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-10T21:50:15.714Z",
+              "DocumentIndex": 3,
+              "Title": "Flights.razor.css",
+              "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Components\\Pages\\Flights.razor.css",
+              "RelativeDocumentMoniker": "OOP2Assignment2\\Components\\Pages\\Flights.razor.css",
+              "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Components\\Pages\\Flights.razor.css",
+              "RelativeToolTip": "OOP2Assignment2\\Components\\Pages\\Flights.razor.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-07-11T18:26:30.665Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
+              "Title": "OOP2Assignment2.styles.css",
+              "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\bin\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\AppX\\wwwroot\\OOP2Assignment2.styles.css",
+              "RelativeDocumentMoniker": "OOP2Assignment2\\bin\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\AppX\\wwwroot\\OOP2Assignment2.styles.css",
+              "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\bin\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\AppX\\wwwroot\\OOP2Assignment2.styles.css",
+              "RelativeToolTip": "OOP2Assignment2\\bin\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\AppX\\wwwroot\\OOP2Assignment2.styles.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-07-11T18:12:33.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\App.xaml",
+              "RelativeDocumentMoniker": "OOP2Assignment2\\App.xaml",
+              "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\App.xaml",
+              "RelativeToolTip": "OOP2Assignment2\\App.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-11T18:10:21.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "_Imports.razor",
               "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Components\\_Imports.razor",
               "RelativeDocumentMoniker": "OOP2Assignment2\\Components\\_Imports.razor",
@@ -70,22 +108,9 @@
               "RelativeDocumentMoniker": "OOP2Assignment2\\Services\\Flight.cs",
               "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Services\\Flight.cs",
               "RelativeToolTip": "OOP2Assignment2\\Services\\Flight.cs",
-              "ViewState": "AQIAAAEAAAAAAADnOpojwFgAAAAAAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA5wCEAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-09T22:09:48.295Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FlightHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Services\\FlightHandler.cs",
-              "RelativeDocumentMoniker": "OOP2Assignment2\\Services\\FlightHandler.cs",
-              "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Services\\FlightHandler.cs",
-              "RelativeToolTip": "OOP2Assignment2\\Services\\FlightHandler.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAmwBgAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T20:25:35.306Z",
               "EditorCaption": ""
             },
             {
@@ -96,14 +121,40 @@
               "RelativeDocumentMoniker": "OOP2Assignment2\\Components\\Pages\\Flights.razor",
               "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Components\\Pages\\Flights.razor",
               "RelativeToolTip": "OOP2Assignment2\\Components\\Pages\\Flights.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAABAAAA",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAYwDsAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-07-10T20:10:00.735Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
+              "Title": "FlightHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Services\\FlightHandler.cs",
+              "RelativeDocumentMoniker": "OOP2Assignment2\\Services\\FlightHandler.cs",
+              "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\Services\\FlightHandler.cs",
+              "RelativeToolTip": "OOP2Assignment2\\Services\\FlightHandler.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAArwC0AAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T20:25:35.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "styles.xml",
+              "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\obj\\Debug\\net8.0-android\\lp\\154\\jl\\res\\values\\styles.xml",
+              "RelativeDocumentMoniker": "OOP2Assignment2\\obj\\Debug\\net8.0-android\\lp\\154\\jl\\res\\values\\styles.xml",
+              "ToolTip": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\obj\\Debug\\net8.0-android\\lp\\154\\jl\\res\\values\\styles.xml",
+              "RelativeToolTip": "OOP2Assignment2\\obj\\Debug\\net8.0-android\\lp\\154\\jl\\res\\values\\styles.xml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2024-07-11T18:24:37.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "MauiProgram.cs",
               "DocumentMoniker": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\MauiProgram.cs",
               "RelativeDocumentMoniker": "OOP2Assignment2\\MauiProgram.cs",

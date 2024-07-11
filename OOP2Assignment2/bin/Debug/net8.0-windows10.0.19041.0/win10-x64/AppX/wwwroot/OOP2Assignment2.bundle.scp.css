@@ -178,3 +178,19 @@ main[b-l1sqw1tdoa] {
         overflow-y: auto;
     }
 }
+/* /Components/Pages/Flights.razor.rz.scp.css */
+.header[b-ysv8cwvi2e] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectHeaders[b-ysv8cwvi2e]{
+    margin-bottom: 1px;
+}
+
+#flightSelect[b-ysv8cwvi2e] {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}

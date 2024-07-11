@@ -1,0 +1,15 @@
+.header[b-ysv8cwvi2e] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectHeaders[b-ysv8cwvi2e]{
+    margin-bottom: 1px;
+}
+
+#flightSelect[b-ysv8cwvi2e] {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}

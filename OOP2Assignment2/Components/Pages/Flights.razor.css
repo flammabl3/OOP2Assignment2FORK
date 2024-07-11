@@ -1,0 +1,15 @@
+﻿.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectHeaders{
+    margin-bottom: 1px;
+}
+
+#flightSelect {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}

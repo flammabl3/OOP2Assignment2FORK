@@ -29,25 +29,25 @@
     <AppXManifest Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-07-10T22:24:56.837</Modified>
+      <Modified>2024-07-11T20:52:00.968</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-07-10T22:24:05.083</Modified>
+      <Modified>2024-07-11T20:48:32.383</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\OOP2Assignment2.runtimeconfig.json">
       <PackagePath>OOP2Assignment2.runtimeconfig.json</PackagePath>
-      <Modified>2024-07-10T22:08:13.930</Modified>
+      <Modified>2024-07-11T20:01:13.450</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\OOP2Assignment2.dll">
       <PackagePath>OOP2Assignment2.dll</PackagePath>
-      <Modified>2024-07-10T22:24:04.829</Modified>
+      <Modified>2024-07-11T20:51:18.414</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>OOP2Assignment2.exe</PackagePath>
-      <Modified>2024-07-10T22:24:04.834</Modified>
+      <Modified>2024-07-11T20:51:18.427</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -303,7 +303,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\OOP2Assignment2.deps.json">
       <PackagePath>OOP2Assignment2.deps.json</PackagePath>
-      <Modified>2024-07-10T22:08:13.757</Modified>
+      <Modified>2024-07-11T20:01:13.445</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.31\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
@@ -719,11 +719,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\bundle\OOP2Assignment2.styles.css">
       <PackagePath>wwwroot\OOP2Assignment2.styles.css</PackagePath>
-      <Modified>2024-07-05T19:19:38.103</Modified>
+      <Modified>2024-07-11T19:46:31.620</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\projectbundle\OOP2Assignment2.bundle.scp.css">
       <PackagePath>wwwroot\OOP2Assignment2.bundle.scp.css</PackagePath>
-      <Modified>2024-07-05T19:19:38.103</Modified>
+      <Modified>2024-07-11T19:46:31.623</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\Components\Layout\MainLayout.razor.css">
       <PackagePath>Components\Layout\MainLayout.razor.css</PackagePath>
@@ -732,6 +732,10 @@
     <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\Components\Layout\NavMenu.razor.css">
       <PackagePath>Components\Layout\NavMenu.razor.css</PackagePath>
       <Modified>2024-07-05T19:18:50.049</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\Components\Pages\Flights.razor.css">
+      <PackagePath>Components\Pages\Flights.razor.css</PackagePath>
+      <Modified>2024-07-11T19:46:30.620</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
