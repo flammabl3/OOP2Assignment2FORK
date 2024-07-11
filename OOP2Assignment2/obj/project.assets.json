@@ -45064,11 +45064,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
+      "projectUniqueName": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
       "projectName": "OOP2Assignment2",
-      "projectPath": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
+      "projectPath": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2.csproj",
       "packagesPath": "C:\\Users\\Harry\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\OOP2Assignment2\\obj\\",
+      "outputPath": "C:\\Users\\Harry\\OneDrive - Southern Alberta Institute of Technology\\OOP2\\OOP2Assignment2\\OOP2Assignment2\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
