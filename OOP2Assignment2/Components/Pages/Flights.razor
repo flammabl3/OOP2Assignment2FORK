@@ -2,6 +2,7 @@
 @using OOP2Assignment2.Services
 @using Microsoft.Maui.Controls
 @inject FlightHandler flightHandler
+@inject ReservationHandler reservationHandler
 
 
 <div class="header">
@@ -35,29 +36,145 @@
 </div>
 
 <div>
-    <select> 
-        @foreach (var flight in flights)
+    <select @bind=selectedFlightNumber>
+        @foreach (Flight flight in flights)
         {
-            <option value="@flight.FlightNumber">@flight.FlightNumber, @flight.Airline, @flight.AirportCodeStart, @flight.AirportCodeEnd, @flight.Day, @flight.Time, @flight.Unsure </option>
+            <option value="@flight.FlightNumber">@flight</option>
         }
     </select>
 </div>
 
+<div class="header">
+    <h1>Reserve</h1>
+</div>
+
+<div id="reservationMaker">
+    <label>
+        Flight Code
+        <input @bind-value='selectedFlight.FlightNumber'/>
+    </label>
+
+    <label>
+        Airline
+        <input @bind-value='selectedFlight.Airline'/>
+    </label>
+
+    <label>
+        Day
+        <input @bind-value='selectedFlight.Day' />
+    </label>
+
+    <label>
+        Time
+        <input @bind=time/>
+    </label>
+
+    <label>
+        Cost
+        <input @bind=cost/>
+    </label>
+
+    <label>
+        Name
+        <input @bind=name/>
+    </label>
+
+    <label>
+        Citizenship
+        <input @bind=citizenship/>
+    </label>
+
+      <Button @onclick="SaveReservations">Reserve</Button>
+      @if (!string.IsNullOrEmpty(errorMessage))
+      {
+          <div class="alert alert-danger">@errorMessage</div>
+      }
+</div>
+
+<p>Reservation Code: @reservationCode</p>
+
 
 @code {
     private List<Flight> flights = new List<Flight>();
-    private string incoming = "Any";
-    private string outgoing = "Any";
-    private string day = "Any";
+    private string incoming;
+    private string outgoing;
+    private string day;
+
+    private string time;
+    private float cost;
+    private string name;
+    private string citizenship;
+
+    private string? errorMessage;
+
+    private string? _selectedNo;
+
+    private string? reservationCode;
+
+    string? selectedFlightNumber
+    {
+        get { return _selectedNo; }
+        set
+        {
+            _selectedNo = value;
+            selectedFlight = flightHandler.findFlights(_selectedNo); 
+        } 
+    }
+
+    Flight selectedFlight;
+    Reservation selectedReservation;
 
     protected override void OnInitialized()
     {
         flightHandler.ReadCSV();
+        incoming = "Any";
+        outgoing = "Any";
+        day = "Any";
+        selectedFlight = new Flight();
     }
 
     void FindFlights()
     {
         flights = flightHandler.findFlights(outgoing, incoming, day);
+        if (flights.Count() > 0)
+            selectedFlight = flights[0];
     }
 
+    void SaveReservations()
+    {
+        if (string.IsNullOrEmpty(selectedFlight.FlightNumber))
+        {
+            errorMessage = "A flight must be selected!";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(name))
+        {
+            errorMessage = "A name must be entered!";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(citizenship))
+        {
+            errorMessage = "A citizenship must be entered!";
+            return;
+        }
+
+
+        //if no time is entered, just use the current time.
+        if (string.IsNullOrEmpty(time))
+        {
+            time = DateTime.Now.ToString("HH:mm");
+        }
+
+        selectedReservation = new Reservation(selectedFlightNumber, selectedFlight.FlightNumber, selectedFlight.Day, time, cost, name, citizenship);
+        reservationCode = selectedReservation.ReservationCode;
+        reservationHandler.WriteToFile(selectedReservation);
+        resetError();
+    }
+
+    void resetError()
+    {
+        errorMessage = null;
+    }
 }

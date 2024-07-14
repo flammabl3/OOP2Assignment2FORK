@@ -1,61 +1,65 @@
 ﻿@page "/reservations"
+@using OOP2Assignment2.Services
+@using Microsoft.Maui.Controls
+@inject ReservationHandler reservationHandler
 
-<h1>Weather</h1>
 
-<p>This component demonstrates showing data.</p>
+<div id ="reservationSelect">
+    <label>
+        Code:
+        <input @bind-value='code' />
+    </label>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    <label>
+        Airline:
+        <input @bind-value='airline' />
+    </label>
+
+    <label>
+        Name
+        <input @bind-value='name' />
+    </label>
+
+    <Button @onclick="FindReservations">Find Reservations</Button>
+
+</div>
+
+<div class="header">
+    <h1>Reservations</h1>
+</div>
+
+<div>
+    <select @bind=selectedReservationNumber>
+        @foreach (Reservation reservation in reservations)
+        {
+            <option value="@reservation">@reservation</option>
+        }
+    </select>
+</div>
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private List<Reservation> reservations = new List<Reservation>();
+    private string code;
+    private string airline;
+    private string name;
 
-    protected override async Task OnInitializedAsync()
+    Reservation selectedReservation;
+    string _selectedReservationNumber;
+    string selectedReservationNumber { get { return _selectedReservationNumber; } set { selectedReservationNumber = value; selectedReservation = reservationHandler.FindReservation(_selectedReservationNumber); } }
+
+    protected override void OnInitialized()
     {
-        // Simulate asynchronous loading to demonstrate a loading indicator
-        await Task.Delay(500);
-
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
+        reservationHandler.ReadFromFile();
+        code = "Any";
+        airline = "Any";
+        name = "Any";
+        selectedReservation = new Reservation();
     }
 
-    private class WeatherForecast
+    protected void FindReservations()
     {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        reservations = reservationHandler.FindReservation(code, airline, name);
+        if (reservations.Count() > 0)
+            selectedReservation = reservations[0];
     }
 }

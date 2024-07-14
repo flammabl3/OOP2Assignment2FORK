@@ -24,6 +24,10 @@ namespace OOP2Assignment2
 
             builder.Services.AddSingleton<FlightHandler>();
 
+            builder.Services.AddSingleton<AirportHandler>();
+
+            builder.Services.AddSingleton<ReservationHandler>();
+
             return builder.Build();
         }
     }

@@ -218,3 +218,4 @@ C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assi
 C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Net.Http.Headers.dll
 C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\System.IO.Pipelines.dll
 C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\Components\Pages\Flights.razor.rz.scp.css
+C:\Users\Harry\OneDrive - Southern Alberta Institute of Technology\OOP2\OOP2Assignment2\OOP2Assignment2\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\Components\Pages\Reservations.razor.rz.scp.css

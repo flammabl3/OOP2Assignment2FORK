@@ -53,5 +53,17 @@ namespace OOP2Assignment2.Services
 
             return matchingFlights;
         }
+
+        internal Flight findFlights(string flightNumber)
+        {
+            foreach (Flight flight in flights)
+            {
+                if (flight.FlightNumber == flightNumber)
+                {
+                    return flight;
+                }
+            }
+            return new Flight();
+        }
     }
 }

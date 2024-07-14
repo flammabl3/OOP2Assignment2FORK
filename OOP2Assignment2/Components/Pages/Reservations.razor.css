@@ -1,26 +1,26 @@
-.header[b-ysv8cwvi2e] {
+﻿.header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.selectHeaders[b-ysv8cwvi2e]{
+.selectHeaders{
     margin-bottom: 1px;
 }
 
-#flightSelect[b-ysv8cwvi2e] {
+#reservationSelect {
     display: flex;
     align-items: center;
     flex-direction: row;
 }
 
-#reservationMaker[b-ysv8cwvi2e] {
+#reservationMaker {
     display: flex;
     align-items: start;
     flex-direction: column;
 }
 
-#reservationMaker label[b-ysv8cwvi2e] {
+#reservationMaker label {
     display: flex;
     align-items: start;
     flex-direction: column;

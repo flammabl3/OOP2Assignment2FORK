@@ -8,16 +8,16 @@ namespace OOP2Assignment2.Services
 {
     internal class Flight
     {
-        private string flightNumber { get; set; }
-        private string airline { get; set; }
-        private string airportCodeStart { get; set; }
-        private string airportCodeEnd { get; set; }
-        private string day { get; set; }
-        private string time { get; set; }
+        private string flightNumber;
+        private string airline;
+        private string airportCodeStart;
+        private string airportCodeEnd;
+        private string day;
+        private string time;
 
         //I do not know what one of the csv columns is for
-        private int unsure { get; set; }
-        private float cost { get; set; }
+        private int unsure;
+        private float cost;
 
         public string FlightNumber
         {
@@ -80,9 +80,14 @@ namespace OOP2Assignment2.Services
             this.cost = cost;
         }
 
-        public string toString()
+        public Flight()
         {
-            return $"{airline} flight number: {flightNumber}";
+
+        }
+
+        public override string ToString()
+        {
+            return $"{FlightNumber}, {Airline}, {AirportCodeStart}, {AirportCodeEnd}, {Day}, {Time}, {Unsure}";
         }
     }
 }

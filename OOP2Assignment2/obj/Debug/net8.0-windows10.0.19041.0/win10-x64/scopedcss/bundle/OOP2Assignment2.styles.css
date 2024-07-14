@@ -194,3 +194,43 @@ main[b-l1sqw1tdoa] {
     align-items: center;
     flex-direction: row;
 }
+
+#reservationMaker[b-ysv8cwvi2e] {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+#reservationMaker label[b-ysv8cwvi2e] {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+/* /Components/Pages/Reservations.razor.rz.scp.css */
+.header[b-mij4l9ccif] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectHeaders[b-mij4l9ccif]{
+    margin-bottom: 1px;
+}
+
+#reservationSelect[b-mij4l9ccif] {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#reservationMaker[b-mij4l9ccif] {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+#reservationMaker label[b-mij4l9ccif] {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
