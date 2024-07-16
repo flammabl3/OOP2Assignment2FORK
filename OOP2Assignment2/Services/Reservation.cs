@@ -7,6 +7,12 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
+/* 
+ * Reservation class
+ * Author: Harry Jung
+ * This is the class which represents our reservations.
+ */
+
 namespace OOP2Assignment2.Services 
 { 
     internal class Reservation
@@ -65,6 +71,8 @@ namespace OOP2Assignment2.Services
             get { return citizenShip; }
             set { citizenShip = value; }
         }
+
+        //When we create a new reservation, we assign it a random reservation code.
         internal Reservation(string flightNumber, string airline, string day, string time, float cost, string Name, string citizenShip)
         {
             this.FlightNumber = flightNumber;
@@ -77,7 +85,7 @@ namespace OOP2Assignment2.Services
             GenerateReservationCode();
         }
 
-        //construct given reservationCode for the purposes of JsonDeserializer.
+        //This is the constructor our JsonSerializer uses to serialize each reservation to a file.
         [JsonConstructor]
         internal Reservation(string reservationCode, string flightNumber, string airline, string day, string time, float cost, string Name, string citizenShip)
         {
@@ -91,8 +99,8 @@ namespace OOP2Assignment2.Services
             this.Citizenship = citizenShip;
         }
 
-            //empty constructor, essentially used like null.
-            internal Reservation()
+        //empty constructor, essentially used like null.
+        internal Reservation()
         {
         }
 
@@ -113,7 +121,7 @@ namespace OOP2Assignment2.Services
 
         public override string ToString()
         {
-            return $"{ReservationCode} - {Name}, {FlightNumber}, {Airline}, {Day}, {Time}, {Cost}";
+            return $"{ReservationCode} - {Name}, {FlightNumber}, {Airline}, {Day}, {Time}, ${cost}.00";
         }
     }
 }

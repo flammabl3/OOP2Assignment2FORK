@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* 
+ * Flight class
+ * Author: Harry Jung
+ * This is the class which represents our flights.
+ */
+
 namespace OOP2Assignment2.Services
 {
     internal class Flight
@@ -15,7 +21,6 @@ namespace OOP2Assignment2.Services
         private string day;
         private string time;
 
-        //I do not know what one of the csv columns is for
         private int seats;
         private float cost;
 
@@ -87,7 +92,12 @@ namespace OOP2Assignment2.Services
 
         public override string ToString()
         {
-            return $"{FlightNumber}, {Airline}, {AirportCodeStart}, {AirportCodeEnd}, {Day}, {Time}, {Seats}";
+            if (flightNumber == null)
+            {
+                return "";
+            }
+
+            return $"{FlightNumber}, {Airline}, {AirportCodeStart}, {AirportCodeEnd}, {Day}, {Time}, {Seats} Seats, ${cost}.00";
         }
     }
 }

@@ -4,13 +4,20 @@
 @inject FlightHandler flightHandler
 @inject ReservationHandler reservationHandler
 
-
+<!--
+Reservation Razor page.
+ Author: Harry Jung
+The .razor component to pick a reservation.
+The corresponding classes are injected into this page. It has an associated singleton service registered in MauiProgram.cs.
+ -->
 <div class="header">
     <h1>Flight Finder</h1>
 </div>
 
 
-
+<!-- this page uses a variable for each field. We find a flight using the 3 values below, and then if we find a flight, give each variable its corresponding value from the flight selected with the
+    select element. This way, the fields are automatically filled with the correct info, but can be modified without affecting the selected flight.
+-->
 <div id ="flightSelect">
     <label>
         From
@@ -27,6 +34,7 @@
         <InputText @bind-Value="searchDay" />
     </label>
 
+    <!-- calls FindFlights() when clicked-->
     <button class="btn btn-primary topbutton" @onclick="FindFlights">Find Flights</button>
 
 </div>
@@ -35,6 +43,7 @@
     <h1>Flights</h1>
 </div>
 
+<!-- Our dropdown. We bind the selected option's flight number to the selectedFlightNumber property. When we use the setter, the corresponding Flight object is found using flightHandler  -->
 <div>
     <select @bind=selectedFlightNumber>
         @foreach (Flight flight in flights)
@@ -48,30 +57,31 @@
     <h1>Reserve</h1>
 </div>
 
+<!-- each field is bound to a property, which will be used to create a reservation. Some are readonly. -->
 <div id="reservationMaker">
     <label>
         Flight Code
-        <InputText @bind-Value="flightNo"/>
+        <InputText @bind-Value="selectedFlightNumber" readonly />
     </label>
 
     <label>
         Airline
-        <InputText @bind-Value="airline"/>
+        <InputText @bind-Value="airline" readonly />
     </label>
 
     <label>
         Day
-        <InputText @bind-Value="day" />
+        <InputText @bind-Value="day" readonly />
     </label>
 
     <label>
         Time
-        <InputText @bind-Value="time" />
+        <InputText @bind-Value="time" readonly />
     </label>
 
     <label>
         Cost
-        <InputText @bind-Value="cost"/>
+        <InputText @bind-Value="cost" readonly />
     </label>
 
     <label>
@@ -83,6 +93,8 @@
         Citizenship
         <InputText @bind-Value="citizenship"/>
     </label>
+
+    <!-- if an exception is caught, errorMessage will be assigned a value, and then this if statement will display a blazor error.-->
 
     <button class="btn btn-primary" @onclick="SaveReservations">Reserve</button>
       @if (!string.IsNullOrEmpty(errorMessage))
@@ -98,6 +110,8 @@
 
 
 @code {
+    <!-- the flights List will store all the flights which match the search criteria.-->
+
     private List<Flight> flights = new List<Flight>();
     private string incoming { get; set; } = string.Empty;
     private string outgoing { get; set; } = string.Empty;
@@ -118,6 +132,7 @@
 
     private string? reservationCode;
 
+    <!-- when selectedFlightNumber is changed via the select element, we will change which Flight object is being selected too.-->
     string? selectedFlightNumber
     {
         get { return _selectedNo; }
@@ -132,6 +147,7 @@
     Flight selectedFlight;
     Reservation selectedReservation;
 
+    <!-- Read from the CSV, and store all Flights within the injected flightHandler. The current reservation and flight will be nothing (An object with null properties).-->
     protected override void OnInitialized()
     {
         flightHandler.ReadCSV();
@@ -139,62 +155,84 @@
         outgoing = "Any";
         searchDay = "Any";
         selectedFlight = new Flight();
+        selectedReservation = new Reservation();
     }
 
+    <!-- find flights that match, then select the first element as the selected item.-->
     void FindFlights()
     {
         flights = flightHandler.findFlights(outgoing, incoming, searchDay);
         if (flights.Count() > 0)
         {
             selectedFlight = flights[0];
+            selectedFlightNumber = selectedFlight.FlightNumber;
             modifyItems();
         }
     }
 
+    //A caught exception will display a blazor error.
     void SaveReservations()
     {
-        if (string.IsNullOrEmpty(selectedFlight.FlightNumber))
+        try
         {
-            errorMessage = "A flight must be selected!";
-            return;
-        }
 
-        if (string.IsNullOrEmpty(name))
+            Flight flight = flightHandler.findFlights(flightNo);
+            // if there is no flight number, then there is no selected flight.
+            if (string.IsNullOrEmpty(selectedFlightNumber))
+            {
+                throw new Exception("A flight must be selected!");
+            }
+            // if there is a flight number, but it isn't found in the list of flights, then it is not a valid flight.
+            if (string.IsNullOrEmpty(flight.ToString()))
+            {
+                throw new Exception("No flight with that number!");
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new Exception("A name must be entered!");
+            }
+
+            if (string.IsNullOrEmpty(citizenship))
+            {
+                throw new Exception("A citizenship must be entered!");
+            }
+
+            if (flight.Seats <= 0)
+            {
+                throw new Exception("No seats are left!");
+            }
+
+            //if no time is entered, just use the current time.
+            if (string.IsNullOrEmpty(time))
+            {
+                time = DateTime.Now.ToString("HH:mm");
+            }
+
+            //create a Reservation object with the TextInput values, serialize to the reservation files, and then reduce the number of seats.
+            selectedReservation = new Reservation(flightNo, airline, day, time, float.Parse(cost), name, citizenship);
+            reservationCode = selectedReservation.ReservationCode;
+            reservationHandler.WriteToFile(selectedReservation);
+
+            flightHandler.ReserveSeat(flightNo);
+
+            resetError();
+        } catch (Exception e)
         {
-            errorMessage = "A name must be entered!";
-            return;
+            errorMessage = e.Message;
         }
-
-        if (string.IsNullOrEmpty(citizenship))
-        {
-            errorMessage = "A citizenship must be entered!";
-            return;
-        }
-
-        //if no time is entered, just use the current time.
-        if (string.IsNullOrEmpty(time))
-        {
-            time = DateTime.Now.ToString("HH:mm");
-        }
-
-        selectedReservation = new Reservation(flightNo, airline, day, time, float.Parse(cost), name, citizenship);
-        reservationCode = selectedReservation.ReservationCode;
-        reservationHandler.WriteToFile(selectedReservation);
-
-        flightHandler.ReserveSeat(flightNo);
-
-        resetError();
     }
 
+    //when an operation is successful, make the errorMessage null, hiding it again.
     void resetError()
     {
         errorMessage = null;
     }
 
-
+    //Whenever a flight is selected, we call this function to associate our @code block variables with the selectedFlight's fields.
     void modifyItems()
     {
-        flightNo = selectedFlight.FlightNumber;
+        flightNo = selectedFlightNumber;
         airline = selectedFlight.Airline;
         day = selectedFlight.Day;
         time = selectedFlight.Time;

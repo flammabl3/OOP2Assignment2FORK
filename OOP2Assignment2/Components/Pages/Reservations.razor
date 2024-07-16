@@ -5,6 +5,13 @@
 @inject ReservationHandler reservationHandler
 
 
+<!-- 
+Reservation Razor page.
+ Author: Harry Jung
+The .razor component to pick a reservation.
+ -->
+
+ <!-- logic is virtually identical to flights.razor, but the fields differ. see Flights.razor for info on logic, or the .cs classes in Services for info on data handling.-->
 <div id ="reservationSelect">
     <label>
         Code:
@@ -45,28 +52,33 @@
 
 <div id="reservationMaker">
     <label>
+        Selected Reservation Code
+        <InputText @bind-Value="selectedReservationNumber" readonly/>
+    </label>
+
+    <label>
         Flight Code
-        <InputText @bind-Value="flightNo"/>
+        <InputText @bind-Value="flightNo" readonly/>
     </label>
 
     <label>
         Airline
-        <InputText @bind-Value="airline"/>
+        <InputText @bind-Value="airline" readonly/>
     </label>
 
     <label>
         Day
-        <InputText @bind-Value="day" />
+        <InputText @bind-Value="day" readonly/>
     </label>
 
     <label>
         Time
-        <input @bind=time/>
+        <input @bind=time readonly />
     </label>
 
     <label>
         Cost
-        <input @bind=cost/>
+        <input @bind=cost readonly />
     </label>
 
     <label>
@@ -80,6 +92,8 @@
     </label>
 </div>
 
+<!-- success message added, as this page doesn't have a reservation code update at the bottom to indicate success. -->
+
 <div class="buttons">
     <button @onclick="UpdateReservations" class="btn btn-primary">Update</button>
 
@@ -87,6 +101,10 @@
     @if (!string.IsNullOrEmpty(errorMessage))
     {
         <div class="alert alert-danger">@errorMessage</div>
+    }
+    @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success">@successMessage</div>
     }
 </div>
 
@@ -106,6 +124,7 @@
     private string searchAirline { get; set; } = string.Empty;
 
     private string? errorMessage;
+    private string? successMessage;
 
     private string? reservationCode;
 
@@ -115,16 +134,23 @@
     string selectedReservationNumber { 
         get { 
             return _selectedReservationNumber; 
-        } set { 
-            _selectedReservationNumber = value.Substring(0, 5); 
-            selectedReservation = reservationHandler.FindReservation(_selectedReservationNumber);
-            modifyItems();
+        } set {
+            try
+            {
+                _selectedReservationNumber = value.Substring(0, 5);
+                selectedReservation = reservationHandler.FindReservation(_selectedReservationNumber);
+                modifyItems();
+            } catch (Exception e)
+            {
+                errorMessage = "No reservations stored.";
+            }
         } 
     }
 
     protected override void OnInitialized()
     {
         reservationHandler.ReadFromFile();
+        flightHandler.ReadCSV();
         searchCode = "Any";
         searchAirline = "Any";
         searchName = "Any";
@@ -140,6 +166,8 @@
             modifyItems();
         }
 
+        selectedReservationNumber = selectedReservation.ReservationCode;
+
     }
 
 
@@ -148,9 +176,16 @@
         try
         {
 
-            if (string.IsNullOrEmpty(selectedReservation.FlightNumber))
+            Reservation reserv = reservationHandler.FindReservation(selectedReservationNumber);
+            // if there is no flight number, then there is no selected flight.
+            if (string.IsNullOrEmpty(selectedReservationNumber))
             {
-                throw new Exception("A flight must be selected!");
+                throw new Exception("A reservation must be selected!");
+            }
+            // if there is a flight number, but it isn't found in the list of flights, then it is not a valid flight.
+            if (string.IsNullOrEmpty(reserv.ToString()))
+            {
+                throw new Exception("No reservation with that number!");
             }
 
             if (string.IsNullOrEmpty(name))
@@ -163,6 +198,15 @@
                 throw new Exception("A citizenship must be entered!");
             }
 
+            Flight flight = flightHandler.findFlights(reserv.FlightNumber);
+            if (string.IsNullOrEmpty(flight.ToString()))
+            {
+                throw new Exception("No flight with that number!");
+            } else if (flight.Seats <= 0)
+            {
+                throw new Exception("No seats are left!");
+            }
+
 
             //if no time is entered, just use the current time.
             if (string.IsNullOrEmpty(time))
@@ -173,6 +217,8 @@
             Reservation updatedReservation = new Reservation(selectedReservation.ReservationCode, flightNo, airline, day, time, float.Parse(cost), name, citizenship);
             reservationHandler.UpdateToFile(updatedReservation);
             reservationHandler.ReadFromFile();
+            successMessage = $"Successfully updated!";
+
             resetError();
         } catch (Exception e)
         {
@@ -186,10 +232,16 @@
     {
         try
         {
-
-            if (string.IsNullOrEmpty(selectedReservation.FlightNumber))
+            Reservation reserv = reservationHandler.FindReservation(selectedReservationNumber);
+            // if there is no flight number, then there is no selected flight.
+            if (string.IsNullOrEmpty(selectedReservationNumber))
             {
-                throw new Exception("A flight must be selected!");
+                throw new Exception("A reservation must be selected!");
+            }
+            // if there is a flight number, but it isn't found in the list of flights, then it is not a valid flight.
+            if (string.IsNullOrEmpty(reserv.ToString()))
+            {
+                throw new Exception("No reservation with that number!");
             }
 
             if (string.IsNullOrEmpty(name))
@@ -200,6 +252,12 @@
             if (string.IsNullOrEmpty(citizenship))
             {
                 throw new Exception("A citizenship must be entered!");
+            }
+
+            Flight flight = flightHandler.findFlights(reserv.FlightNumber);
+            if (string.IsNullOrEmpty(flight.ToString()))
+            {
+                throw new Exception("No flight with that number!");
             }
 
 
@@ -216,7 +274,7 @@
 
             selectedReservation = new Reservation();
             modifyItems();
-
+            successMessage = $"Successfully deleted!";
             resetError();
         }
         catch (Exception e)

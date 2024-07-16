@@ -6,11 +6,21 @@ using System.Threading.Tasks;
 using CsvHelper;
 using OOP2Assignment2.Components.Pages;
 
+
+/* 
+ * FlightHandler class
+ * Author: Harry Jung
+ * The heart of our program. Injected into our .razor components, and stores Flight objects in a List.
+ * Reads and writes from CSV.
+ */
+
 namespace OOP2Assignment2.Services
 {
     public class FlightHandler
     {
         internal List<Flight> flights = new List<Flight>();
+        
+        // read from CSV and create a Flight object using the Flight() constructor and the fields from each line of the CSV.
         internal void ReadCSV()
         {
             flights.Clear();
@@ -37,14 +47,18 @@ namespace OOP2Assignment2.Services
 
         internal List<Flight> findFlights(string incoming, string outgoing, string day)
         {
+            //case insensitive search, return flights which match our 3 inputs, using "any" as a wildcard.
+            incoming = incoming.ToUpper();
+            outgoing = outgoing.ToUpper();
+            day = day.ToLower();
             List<Flight> matchingFlights = new List<Flight>();
             foreach (Flight flight in flights)
             { 
-                if (flight.AirportCodeStart == incoming || incoming == "Any")
+                if (flight.AirportCodeStart == incoming || incoming == "ANY")
                 {
-                    if (flight.AirportCodeEnd == outgoing || outgoing == "Any")
+                    if (flight.AirportCodeEnd == outgoing || outgoing == "ANY")
                     {
-                        if (flight.Day == day || day == "Any")
+                        if (flight.Day.ToLower() == day || day == "any")
                         {
                             matchingFlights.Add(flight);
                         }
@@ -55,8 +69,10 @@ namespace OOP2Assignment2.Services
             return matchingFlights;
         }
 
+        //find a flight solely by flight number.
         internal Flight findFlights(string flightNumber)
         {
+            flightNumber = flightNumber.ToUpper();
             foreach (Flight flight in flights)
             {
                 if (flight.FlightNumber == flightNumber)
@@ -66,8 +82,11 @@ namespace OOP2Assignment2.Services
             }
             return new Flight();
         }
+
+        //Find a flight and subtract 1 from its available seats, then update the CSV.
         internal void ReserveSeat(string flightNumber)
         {
+            flightNumber = flightNumber.ToUpper();
             bool foundFlight = false;
             foreach (Flight flight in flights)
             {
@@ -83,6 +102,7 @@ namespace OOP2Assignment2.Services
             
         }
 
+        //same as above, but add a seat.
         internal void FreeSeat(string flightNumber)
         {
             bool foundFlight = false;
@@ -99,21 +119,26 @@ namespace OOP2Assignment2.Services
                 WriteToFile();
         }
 
-        //write the stored flights to the file
+        //write the stored flights to the file.
         //Join all properties with commas and write back to the CSV.
         internal void WriteToFile()
         {
             try
             {
-                string[] flightStrings = [];
+                //make an array of each of the Flight object's properties, then join them and add to an array of flight csv strings.
+                //Truncate to file and write.
+                List<string> flightStrings = new List<string>();
                 string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../..", "resources", "csv", "flights.csv");
                 foreach (Flight flight in flights)
                 {
                     string[] fields = [flight.FlightNumber, flight.Airline, flight.AirportCodeStart, flight.AirportCodeEnd, flight.Day, flight.Time, flight.Seats.ToString(), flight.Cost.ToString()];
                     flightStrings.Append(string.Join(",", fields));
                 }
-                File.WriteAllLines(filepath, flightStrings);
-
+                if (flightStrings.Count() > 0)
+                {
+                    File.WriteAllLines(filepath, flightStrings);
+                    ReadCSV();
+                }
 
             }
             catch (Exception e)
