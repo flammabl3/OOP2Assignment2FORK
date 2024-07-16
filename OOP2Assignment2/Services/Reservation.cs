@@ -26,6 +26,7 @@ namespace OOP2Assignment2.Services
         private string name;
         private string citizenShip;
 
+        private bool active;
         public string ReservationCode
         {
             get { return reservationCode; }
@@ -72,6 +73,12 @@ namespace OOP2Assignment2.Services
             set { citizenShip = value; }
         }
 
+        public bool Active
+        {
+            get { return active; }
+            set { active = value; }
+        }
+
         //When we create a new reservation, we assign it a random reservation code.
         internal Reservation(string flightNumber, string airline, string day, string time, float cost, string Name, string citizenShip)
         {
@@ -82,12 +89,13 @@ namespace OOP2Assignment2.Services
             this.Cost = cost;
             this.name = Name;
             this.Citizenship = citizenShip;
+            this.Active = true;
             GenerateReservationCode();
         }
 
         //This is the constructor our JsonSerializer uses to serialize each reservation to a file.
         [JsonConstructor]
-        internal Reservation(string reservationCode, string flightNumber, string airline, string day, string time, float cost, string Name, string citizenShip)
+        internal Reservation(string reservationCode, string flightNumber, string airline, string day, string time, float cost, string Name, string citizenShip, bool active)
         {
             this.ReservationCode = reservationCode;
             this.FlightNumber = flightNumber;
@@ -97,6 +105,7 @@ namespace OOP2Assignment2.Services
             this.Cost = cost;
             this.name = Name;
             this.Citizenship = citizenShip;
+            this.Active = active;
         }
 
         //empty constructor, essentially used like null.

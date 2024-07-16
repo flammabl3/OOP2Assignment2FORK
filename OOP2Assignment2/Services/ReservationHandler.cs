@@ -91,7 +91,7 @@ namespace OOP2Assignment2.Services
             throw new System.Exception("No entry found.");
         }
         
-        //Same logic, remove Reservation, truncate, serialize.
+        //Same logic, set inactive , truncate, serialize.
         internal void DeleteFromFile(Reservation reservation)
         {
             for (int i = 0; i < reservations.Count(); i++)
