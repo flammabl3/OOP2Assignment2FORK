@@ -51,6 +51,19 @@ The .razor component to pick a reservation.
 </div>
 
 <div id="reservationMaker">
+    @if (String.IsNullOrEmpty(selectedReservation.FlightNumber)) {
+        activeReservation = false;
+    }else if (selectedReservation.Active)
+    {
+        activeReservation = true;
+        <p alert alert-success>Reservation is active!</p>
+    } else
+    {
+        activeReservation = false;
+        <p alert alert-danger>Reservation is inactive!</p>
+    }
+
+
     <label>
         Selected Reservation Code
         <InputText @bind-Value="selectedReservationNumber" readonly/>
@@ -97,7 +110,7 @@ The .razor component to pick a reservation.
 <div class="buttons">
     <button @onclick="UpdateReservations" class="btn btn-primary">Update</button>
 
-    <button @onclick="DeleteReservation" class="btn btn-primary">Delete</button>
+    <button @onclick="DeleteReservation" class="btn btn-primary">Deactivate</button>
     @if (!string.IsNullOrEmpty(errorMessage))
     {
         <div class="alert alert-danger">@errorMessage</div>
@@ -122,6 +135,9 @@ The .razor component to pick a reservation.
     private string searchCode { get; set; } = string.Empty;
     private string searchName { get; set; } = string.Empty;
     private string searchAirline { get; set; } = string.Empty;
+
+    private bool activeReservation { get; set; }
+
 
     private string? errorMessage;
     private string? successMessage;
@@ -162,8 +178,11 @@ The .razor component to pick a reservation.
         reservations = reservationHandler.FindReservation(searchCode, searchAirline, searchName);
         if (reservations.Count() > 0)
         {
-            selectedReservation = reservations[0];
-            modifyItems();
+            if (string.IsNullOrEmpty(selectedReservation.FlightNumber))
+            {
+                selectedReservation = reservations[0];
+                modifyItems();
+            }
         }
 
         selectedReservationNumber = selectedReservation.ReservationCode;
@@ -214,10 +233,14 @@ The .razor component to pick a reservation.
                 time = DateTime.Now.ToString("HH:mm");
             }
 
-            Reservation updatedReservation = new Reservation(selectedReservation.ReservationCode, flightNo, airline, day, time, float.Parse(cost), name, citizenship);
+            Reservation updatedReservation = new Reservation(selectedReservation.ReservationCode, flightNo, airline, day, time, float.Parse(cost), name, citizenship, true);
             reservationHandler.UpdateToFile(updatedReservation);
             reservationHandler.ReadFromFile();
             successMessage = $"Successfully updated!";
+
+            if (activeReservation == false)
+                flightHandler.ReserveSeat(flightNo);
+                
 
             resetError();
         } catch (Exception e)
@@ -267,14 +290,16 @@ The .razor component to pick a reservation.
                 time = DateTime.Now.ToString("HH:mm");
             }
 
-            Reservation updatedReservation = new Reservation(selectedReservation.ReservationCode, flightNo, airline, day, time, float.Parse(cost), name, citizenship);
+            Reservation updatedReservation = new Reservation(selectedReservation.ReservationCode, flightNo, airline, day, time, float.Parse(cost), name, citizenship, false);
             reservationHandler.DeleteFromFile(updatedReservation);
             reservationHandler.ReadFromFile();
-            flightHandler.FreeSeat(flightNo);
 
-            selectedReservation = new Reservation();
+            //if the reservation was active before, then we can remove their seat.
+            if (activeReservation == true)
+                flightHandler.FreeSeat(flightNo);
+
             modifyItems();
-            successMessage = $"Successfully deleted!";
+            successMessage = $"Successfully deactivated!";
             resetError();
         }
         catch (Exception e)

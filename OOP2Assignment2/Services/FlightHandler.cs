@@ -94,6 +94,7 @@ namespace OOP2Assignment2.Services
                 {
                     foundFlight = true;
                     flight.Seats--;
+                    break;
                 }
             }
 
@@ -105,6 +106,7 @@ namespace OOP2Assignment2.Services
         //same as above, but add a seat.
         internal void FreeSeat(string flightNumber)
         {
+            flightNumber = flightNumber.ToUpper();
             bool foundFlight = false;
             foreach (Flight flight in flights)
             {
@@ -112,6 +114,7 @@ namespace OOP2Assignment2.Services
                 {
                     foundFlight = true;
                     flight.Seats++;
+                    break;
                 }
             }
 
@@ -132,7 +135,7 @@ namespace OOP2Assignment2.Services
                 foreach (Flight flight in flights)
                 {
                     string[] fields = [flight.FlightNumber, flight.Airline, flight.AirportCodeStart, flight.AirportCodeEnd, flight.Day, flight.Time, flight.Seats.ToString(), flight.Cost.ToString()];
-                    flightStrings.Append(string.Join(",", fields));
+                    flightStrings.Add(string.Join(",", fields));
                 }
                 if (flightStrings.Count() > 0)
                 {
