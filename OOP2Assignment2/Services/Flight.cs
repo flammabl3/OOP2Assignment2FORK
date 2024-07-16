@@ -16,7 +16,7 @@ namespace OOP2Assignment2.Services
         private string time;
 
         //I do not know what one of the csv columns is for
-        private int unsure;
+        private int seats;
         private float cost;
 
         public string FlightNumber
@@ -55,10 +55,10 @@ namespace OOP2Assignment2.Services
             set { time = value; }
         }
 
-        public int Unsure
+        public int Seats
         {
-            get { return unsure; }
-            set { unsure = value; }
+            get { return seats; }
+            set { seats = value; }
         }
 
         public float Cost
@@ -68,16 +68,16 @@ namespace OOP2Assignment2.Services
         }
 
 
-        public Flight(string flightNumber, string airline, string airportCodeStart, string airportCodeEnd, string day, string time, int unsure, float cost)
+        public Flight(string flightNumber, string airline, string airportCodeStart, string airportCodeEnd, string day, string time, int seats, float cost)
         {
-            this.flightNumber = flightNumber;
-            this.airline = airline;
-            this.airportCodeStart = airportCodeStart;
-            this.airportCodeEnd = airportCodeEnd;
-            this.day = day;
-            this.time = time;
-            this.unsure = unsure;
-            this.cost = cost;
+            this.FlightNumber = flightNumber;
+            this.Airline = airline;
+            this.AirportCodeStart = airportCodeStart;
+            this.AirportCodeEnd = airportCodeEnd;
+            this.Day = day;
+            this.Time = time;
+            this.Seats = seats;
+            this.Cost = cost;
         }
 
         public Flight()
@@ -87,7 +87,7 @@ namespace OOP2Assignment2.Services
 
         public override string ToString()
         {
-            return $"{FlightNumber}, {Airline}, {AirportCodeStart}, {AirportCodeEnd}, {Day}, {Time}, {Unsure}";
+            return $"{FlightNumber}, {Airline}, {AirportCodeStart}, {AirportCodeEnd}, {Day}, {Time}, {Seats}";
         }
     }
 }

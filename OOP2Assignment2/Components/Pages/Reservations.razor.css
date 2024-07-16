@@ -25,3 +25,23 @@
     align-items: start;
     flex-direction: column;
 }
+
+.topbutton {
+    min-width: 200px;
+    align-self: flex-end;
+}
+
+
+select {
+    min-width: 500px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.buttons button {
+    margin: 20px;
+}

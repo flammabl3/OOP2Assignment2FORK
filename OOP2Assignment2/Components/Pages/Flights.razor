@@ -14,20 +14,20 @@
 <div id ="flightSelect">
     <label>
         From
-        <input @bind-value='outgoing' />
+        <InputText @bind-Value="outgoing" />
     </label>
 
     <label>
         To
-        <input @bind-value='incoming' />
+        <InputText @bind-Value="incoming" />
     </label>
 
     <label>
         Day
-        <input @bind-value='day' />
+        <InputText @bind-Value="searchDay" />
     </label>
 
-    <Button @onclick="FindFlights">Find Flights</Button>
+    <button class="btn btn-primary topbutton" @onclick="FindFlights">Find Flights</button>
 
 </div>
 
@@ -51,59 +51,66 @@
 <div id="reservationMaker">
     <label>
         Flight Code
-        <input @bind-value='selectedFlight.FlightNumber'/>
+        <InputText @bind-Value="flightNo"/>
     </label>
 
     <label>
         Airline
-        <input @bind-value='selectedFlight.Airline'/>
+        <InputText @bind-Value="airline"/>
     </label>
 
     <label>
         Day
-        <input @bind-value='selectedFlight.Day' />
+        <InputText @bind-Value="day" />
     </label>
 
     <label>
         Time
-        <input @bind=time/>
+        <InputText @bind-Value="time" />
     </label>
 
     <label>
         Cost
-        <input @bind=cost/>
+        <InputText @bind-Value="cost"/>
     </label>
 
     <label>
         Name
-        <input @bind=name/>
+        <InputText @bind-Value="name"/>
     </label>
 
     <label>
         Citizenship
-        <input @bind=citizenship/>
+        <InputText @bind-Value="citizenship"/>
     </label>
 
-      <Button @onclick="SaveReservations">Reserve</Button>
+    <button class="btn btn-primary" @onclick="SaveReservations">Reserve</button>
       @if (!string.IsNullOrEmpty(errorMessage))
       {
           <div class="alert alert-danger">@errorMessage</div>
       }
 </div>
 
+
 <p>Reservation Code: @reservationCode</p>
+
+
 
 
 @code {
     private List<Flight> flights = new List<Flight>();
-    private string incoming;
-    private string outgoing;
-    private string day;
+    private string incoming { get; set; } = string.Empty;
+    private string outgoing { get; set; } = string.Empty;
+    private string searchDay { get; set; } = string.Empty;
 
-    private string time;
-    private float cost;
-    private string name;
-    private string citizenship;
+    private string code { get; set; } = string.Empty;
+    private string name { get; set; } = string.Empty;
+    private string airline { get; set; } = string.Empty;
+    private string flightNo { get; set; } = string.Empty;
+    private string day { get; set; } = string.Empty;
+    private string cost { get; set; } = string.Empty;
+    private string time { get; set; } = string.Empty;
+    private string citizenship { get; set; } = string.Empty;
 
     private string? errorMessage;
 
@@ -117,7 +124,8 @@
         set
         {
             _selectedNo = value;
-            selectedFlight = flightHandler.findFlights(_selectedNo); 
+            selectedFlight = flightHandler.findFlights(_selectedNo);
+            modifyItems();
         } 
     }
 
@@ -129,15 +137,18 @@
         flightHandler.ReadCSV();
         incoming = "Any";
         outgoing = "Any";
-        day = "Any";
+        searchDay = "Any";
         selectedFlight = new Flight();
     }
 
     void FindFlights()
     {
-        flights = flightHandler.findFlights(outgoing, incoming, day);
+        flights = flightHandler.findFlights(outgoing, incoming, searchDay);
         if (flights.Count() > 0)
+        {
             selectedFlight = flights[0];
+            modifyItems();
+        }
     }
 
     void SaveReservations()
@@ -160,21 +171,33 @@
             return;
         }
 
-
         //if no time is entered, just use the current time.
         if (string.IsNullOrEmpty(time))
         {
             time = DateTime.Now.ToString("HH:mm");
         }
 
-        selectedReservation = new Reservation(selectedFlightNumber, selectedFlight.FlightNumber, selectedFlight.Day, time, cost, name, citizenship);
+        selectedReservation = new Reservation(flightNo, airline, day, time, float.Parse(cost), name, citizenship);
         reservationCode = selectedReservation.ReservationCode;
         reservationHandler.WriteToFile(selectedReservation);
+
+        flightHandler.ReserveSeat(flightNo);
+
         resetError();
     }
 
     void resetError()
     {
         errorMessage = null;
+    }
+
+
+    void modifyItems()
+    {
+        flightNo = selectedFlight.FlightNumber;
+        airline = selectedFlight.Airline;
+        day = selectedFlight.Day;
+        time = selectedFlight.Time;
+        cost = selectedFlight.Cost.ToString();
     }
 }

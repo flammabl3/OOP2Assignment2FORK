@@ -43,11 +43,63 @@ namespace OOP2Assignment2.Services
                 File.WriteAllText(filepath, jsonString);
                 return;
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 Console.WriteLine($"Error reading Binary File: {e.Message}");
                 return;
             }
+        }
+
+        internal void UpdateToFile(Reservation reservation)
+        {
+            for (int i = 0; i < reservations.Count(); i++)
+            {
+                if (reservations[i].ReservationCode == reservation.ReservationCode)
+                {
+                    reservations[i] = reservation;
+                    string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../..", "resources", "binaryfiles", "reservations.txt");
+
+                    try
+                    {
+                        string jsonString = JsonSerializer.Serialize(reservations);
+                        File.WriteAllText(filepath, jsonString);
+                        return;
+                    }
+                    catch (System.Exception e)
+                    {
+                        Console.WriteLine($"Error reading Binary File: {e.Message}");
+                        return;
+                    }
+                }
+            }
+
+            throw new System.Exception("No entry found.");
+        }
+
+        internal void DeleteFromFile(Reservation reservation)
+        {
+            for (int i = 0; i < reservations.Count(); i++)
+            {
+                if (reservations[i].ReservationCode == reservation.ReservationCode)
+                {
+                    reservations.RemoveAt(i);
+                    string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../..", "resources", "binaryfiles", "reservations.txt");
+
+                    try
+                    {
+                        string jsonString = JsonSerializer.Serialize(reservations);
+                        File.WriteAllText(filepath, jsonString);
+                        return;
+                    }
+                    catch (System.Exception e)
+                    {
+                        Console.WriteLine($"Error reading Binary File: {e.Message}");
+                        return;
+                    }
+                }
+            }
+
+            throw new System.Exception("No entry found.");
         }
 
         internal void ReadFromFile()

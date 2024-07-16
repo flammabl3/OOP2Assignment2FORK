@@ -13,6 +13,7 @@ namespace OOP2Assignment2.Services
         internal List<Flight> flights = new List<Flight>();
         internal void ReadCSV()
         {
+            flights.Clear();
             string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../..", "resources", "csv", "flights.csv");
 
             try
@@ -65,5 +66,62 @@ namespace OOP2Assignment2.Services
             }
             return new Flight();
         }
+        internal void ReserveSeat(string flightNumber)
+        {
+            bool foundFlight = false;
+            foreach (Flight flight in flights)
+            {
+                if (flight.FlightNumber == flightNumber)
+                {
+                    foundFlight = true;
+                    flight.Seats--;
+                }
+            }
+
+            if (foundFlight)
+                WriteToFile();
+            
+        }
+
+        internal void FreeSeat(string flightNumber)
+        {
+            bool foundFlight = false;
+            foreach (Flight flight in flights)
+            {
+                if (flight.FlightNumber == flightNumber)
+                {
+                    foundFlight = true;
+                    flight.Seats++;
+                }
+            }
+
+            if (foundFlight)
+                WriteToFile();
+        }
+
+        //write the stored flights to the file
+        //Join all properties with commas and write back to the CSV.
+        internal void WriteToFile()
+        {
+            try
+            {
+                string[] flightStrings = [];
+                string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../..", "resources", "csv", "flights.csv");
+                foreach (Flight flight in flights)
+                {
+                    string[] fields = [flight.FlightNumber, flight.Airline, flight.AirportCodeStart, flight.AirportCodeEnd, flight.Day, flight.Time, flight.Seats.ToString(), flight.Cost.ToString()];
+                    flightStrings.Append(string.Join(",", fields));
+                }
+                File.WriteAllLines(filepath, flightStrings);
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error reading CSV: {e.Message}");
+                return;
+            }
+        }
+
     }
 }

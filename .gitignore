@@ -1,3 +1,5 @@
-.vs\
-oop2assignment2\obj\
-oop2assignment2\debug\
+.vs/
+obj/
+bin/
+debug/
+net8.0-windows10.0.19041.0/

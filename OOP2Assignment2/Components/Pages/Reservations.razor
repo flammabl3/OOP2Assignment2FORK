@@ -1,26 +1,27 @@
 ﻿@page "/reservations"
 @using OOP2Assignment2.Services
 @using Microsoft.Maui.Controls
+@inject FlightHandler flightHandler
 @inject ReservationHandler reservationHandler
 
 
 <div id ="reservationSelect">
     <label>
         Code:
-        <input @bind-value='code' />
+        <InputText @bind-Value="searchCode"/>
     </label>
 
     <label>
         Airline:
-        <input @bind-value='airline' />
+        <InputText @bind-Value="searchAirline" />
     </label>
 
     <label>
         Name
-        <input @bind-value='name' />
+        <InputText @bind-Value="searchName" />
     </label>
 
-    <Button @onclick="FindReservations">Find Reservations</Button>
+    <button class="btn btn-primary topbutton" @onclick="FindReservations">Find Reservations</button>
 
 </div>
 
@@ -32,34 +33,213 @@
     <select @bind=selectedReservationNumber>
         @foreach (Reservation reservation in reservations)
         {
-            <option value="@reservation">@reservation</option>
+            <option value="@reservation.ReservationCode">@reservation</option>
         }
     </select>
 </div>
 
+
+<div class="header">
+    <h1>Reserve</h1>
+</div>
+
+<div id="reservationMaker">
+    <label>
+        Flight Code
+        <InputText @bind-Value="flightNo"/>
+    </label>
+
+    <label>
+        Airline
+        <InputText @bind-Value="airline"/>
+    </label>
+
+    <label>
+        Day
+        <InputText @bind-Value="day" />
+    </label>
+
+    <label>
+        Time
+        <input @bind=time/>
+    </label>
+
+    <label>
+        Cost
+        <input @bind=cost/>
+    </label>
+
+    <label>
+        Name
+        <input @bind=name/>
+    </label>
+
+    <label>
+        Citizenship
+        <input @bind=citizenship/>
+    </label>
+</div>
+
+<div class="buttons">
+    <button @onclick="UpdateReservations" class="btn btn-primary">Update</button>
+
+    <button @onclick="DeleteReservation" class="btn btn-primary">Delete</button>
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
+</div>
+
 @code {
     private List<Reservation> reservations = new List<Reservation>();
-    private string code;
-    private string airline;
-    private string name;
+    private string code { get; set; } = string.Empty;
+    private string name { get; set; } = string.Empty;
+    private string airline { get; set; } = string.Empty;
+    private string flightNo { get; set; } = string.Empty;
+    private string day { get; set; } = string.Empty;
+    private string cost { get; set; } = string.Empty;
+    private string time { get; set; } = string.Empty;
+    private string citizenship { get; set; } = string.Empty;
+
+    private string searchCode { get; set; } = string.Empty;
+    private string searchName { get; set; } = string.Empty;
+    private string searchAirline { get; set; } = string.Empty;
+
+    private string? errorMessage;
+
+    private string? reservationCode;
+
 
     Reservation selectedReservation;
     string _selectedReservationNumber;
-    string selectedReservationNumber { get { return _selectedReservationNumber; } set { selectedReservationNumber = value; selectedReservation = reservationHandler.FindReservation(_selectedReservationNumber); } }
+    string selectedReservationNumber { 
+        get { 
+            return _selectedReservationNumber; 
+        } set { 
+            _selectedReservationNumber = value.Substring(0, 5); 
+            selectedReservation = reservationHandler.FindReservation(_selectedReservationNumber);
+            modifyItems();
+        } 
+    }
 
     protected override void OnInitialized()
     {
         reservationHandler.ReadFromFile();
-        code = "Any";
-        airline = "Any";
-        name = "Any";
+        searchCode = "Any";
+        searchAirline = "Any";
+        searchName = "Any";
         selectedReservation = new Reservation();
     }
 
     protected void FindReservations()
     {
-        reservations = reservationHandler.FindReservation(code, airline, name);
+        reservations = reservationHandler.FindReservation(searchCode, searchAirline, searchName);
         if (reservations.Count() > 0)
+        {
             selectedReservation = reservations[0];
+            modifyItems();
+        }
+
+    }
+
+
+    void UpdateReservations()
+    {
+        try
+        {
+
+            if (string.IsNullOrEmpty(selectedReservation.FlightNumber))
+            {
+                throw new Exception("A flight must be selected!");
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new Exception("A name must be entered"); 
+            }
+
+            if (string.IsNullOrEmpty(citizenship))
+            {
+                throw new Exception("A citizenship must be entered!");
+            }
+
+
+            //if no time is entered, just use the current time.
+            if (string.IsNullOrEmpty(time))
+            {
+                time = DateTime.Now.ToString("HH:mm");
+            }
+
+            Reservation updatedReservation = new Reservation(selectedReservation.ReservationCode, flightNo, airline, day, time, float.Parse(cost), name, citizenship);
+            reservationHandler.UpdateToFile(updatedReservation);
+            reservationHandler.ReadFromFile();
+            resetError();
+        } catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+
+        FindReservations();
+    }
+
+    void DeleteReservation()
+    {
+        try
+        {
+
+            if (string.IsNullOrEmpty(selectedReservation.FlightNumber))
+            {
+                throw new Exception("A flight must be selected!");
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new Exception("A name must be entered");
+            }
+
+            if (string.IsNullOrEmpty(citizenship))
+            {
+                throw new Exception("A citizenship must be entered!");
+            }
+
+
+            //if no time is entered, just use the current time.
+            if (string.IsNullOrEmpty(time))
+            {
+                time = DateTime.Now.ToString("HH:mm");
+            }
+
+            Reservation updatedReservation = new Reservation(selectedReservation.ReservationCode, flightNo, airline, day, time, float.Parse(cost), name, citizenship);
+            reservationHandler.DeleteFromFile(updatedReservation);
+            reservationHandler.ReadFromFile();
+            flightHandler.FreeSeat(flightNo);
+
+            selectedReservation = new Reservation();
+            modifyItems();
+
+            resetError();
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+
+        FindReservations();
+    }
+
+    void resetError()
+    {
+        errorMessage = null;
+    }
+
+    void modifyItems()
+    {
+        flightNo = selectedReservation.FlightNumber;
+        airline = selectedReservation.Airline;
+        day = selectedReservation.Day;
+        time = selectedReservation.Time;
+        cost = selectedReservation.Cost.ToString();
+        name = selectedReservation.Name;
+        citizenship = selectedReservation.Citizenship;
     }
 }
